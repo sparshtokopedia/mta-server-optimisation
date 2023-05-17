@@ -24,6 +24,7 @@ Make sure you are in the correct directory when running these commands. Adjust t
 
 with endpoint localhost:8080/mta-hosting-optimize
 And all the unit and integration test cases are written in app_test.go 
+And for changing the value of "X" , you can change it in getInstanceName function or you can set the value in .env file
 
 Output will be this 
 [ "mta-prod-1", "mta-prod-3" ]

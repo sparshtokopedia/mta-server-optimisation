@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+
+	"github.com/joho/godotenv"
 )
 
 type HostNameIPStatus struct {
@@ -34,7 +36,7 @@ func main() {
 func getInstanceName(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	thresholdEnv := getEnv("X", "1")
+	thresholdEnv := GoDotEnvVariable("X")
 	threshold, err := strconv.Atoi(thresholdEnv)
 	if err != nil {
 		log.Println("Error converting string to int")
@@ -91,4 +93,16 @@ func getEnv(key string, defaultValue string) string {
 		return value
 	}
 	return defaultValue
+}
+
+func GoDotEnvVariable(key string) string {
+
+	// load .env file
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+
+	return os.Getenv(key)
 }
