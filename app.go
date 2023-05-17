@@ -37,6 +37,7 @@ func getInstanceName(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	thresholdEnv := GoDotEnvVariable("X")
+	// thresholdEnv := getEnv("X","1")
 	threshold, err := strconv.Atoi(thresholdEnv)
 	if err != nil {
 		log.Println("Error converting string to int")
